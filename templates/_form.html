@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    {{ form.hidden_tag() }}
+
+    {% for field in form if field.widget.input_type != 'hidden'%}
+
+    <div class='form-group'>
+        {{ field.label }}
+        {{ field(class="form-control") }}
+
+        <span>
+            {% if field.errors %}
+            {% for error in field.errors %}
+            <b class="text-danger">{{ error }}</b>
+            {% endfor %}
+            {% endif %}
+        </span>
+
+    </div>
+
+    {% endfor %}
+</body>
+
+</html>
